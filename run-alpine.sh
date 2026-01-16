@@ -2,10 +2,13 @@
 
 # Run Alpine development container with persistent volumes
 # Builds image if not exists, runs or starts container as needed
+# Usage: ./run-alpine.sh [WORKSPACE_DIR]
+# WORKSPACE_DIR defaults to current directory if not provided
 
 IMAGE_NAME="alpine-dev"
 CONTAINER_NAME="alpine-dev-container"
 DOCKERFILE="Dockerfile.alpine"
+WORKSPACE_DIR="${1:-$(pwd)}"
 
 # Check if image exists, build if not
 if ! docker image inspect "$IMAGE_NAME" >/dev/null 2>&1; then

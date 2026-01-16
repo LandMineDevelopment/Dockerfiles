@@ -2,10 +2,13 @@
 
 # Run Debian development container with persistent volumes
 # Builds image if not exists, runs or starts container as needed
+# Usage: ./run-debian.sh [WORKSPACE_DIR]
+# WORKSPACE_DIR defaults to current directory if not provided
 
 IMAGE_NAME="debian-dev"
 CONTAINER_NAME="debian-dev-container"
 DOCKERFILE="Dockerfile.debian"
+WORKSPACE_DIR="${1:-$(pwd)}"
 
 # Check if image exists, build if not
 if ! docker image inspect "$IMAGE_NAME" >/dev/null 2>&1; then
