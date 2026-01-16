@@ -1,0 +1,33 @@
+FROM ubuntu:latest
+
+RUN apt-get update && apt-get install -y \
+    bash \
+    python3 \
+    python3-pip \
+    nodejs \
+    npm \
+    neovim \
+    git \
+    curl \
+    wget \
+    vim \
+    nano \
+    ca-certificates \
+    build-essential
+
+RUN curl -fsSL https://opencode.ai/install | bash \
+    && cp ~/.opencode/bin/opencode /usr/local/bin/opencode 
+
+RUN git clone https://github.com/LandMineDevelopment/omarchy_configs.git ~/.config/temp/ \
+    && mv ~/.config/temp/nvim ~/.config/nvim/ \
+    && mv ~/.config/temp/yazi ~/.config/yazi/
+
+RUN rm -r ~/.config/temp
+
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache/pip/*
+
+WORKDIR /workspace
+
+VOLUME ["/workspace", "/usr/local", "/root/.local"]
+
+CMD ["bash"]
