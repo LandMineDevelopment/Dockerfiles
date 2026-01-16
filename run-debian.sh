@@ -1,11 +1,37 @@
 #!/bin/bash
 
 # Run Debian development container with persistent volumes
-# Container will not be removed when stopped (--rm not used)
+# Builds image if not exists, runs or starts container as needed
 
-docker run -it \
-  --name my-debian-dev-container \
-  -v $(pwd):/workspace \
-  -v ~/.local/share/my-debian-dev/usr-local:/usr/local \
-  -v ~/.local/share/my-debian-dev/root-local:/root/.local \
-  my-debian-dev
+IMAGE_NAME="my-debian-dev"
+CONTAINER_NAME="my-debian-dev-container"
+DOCKERFILE="Dockerfile.debian"
+
+# Check if image exists, build if not
+if ! docker image inspect "$IMAGE_NAME" >/dev/null 2>&1; then
+    echo "Building $IMAGE_NAME from $DOCKERFILE..."
+    docker build -f "$DOCKERFILE" -t "$IMAGE_NAME" .
+fi
+
+# Check if container exists
+if docker container inspect "$CONTAINER_NAME" >/dev/null 2>&1; then
+    # Container exists, check if running
+    if [ "$(docker container inspect -f '{{.State.Status}}' "$CONTAINER_NAME")" = "exited" ]; then
+        echo "Starting existing container $CONTAINER_NAME..."
+        docker start -i "$CONTAINER_NAME"
+    elif [ "$(docker container inspect -f '{{.State.Status}}' "$CONTAINER_NAME")" = "running" ]; then
+        echo "Container $CONTAINER_NAME is already running. Attaching..."
+        docker attach "$CONTAINER_NAME"
+    else
+        echo "Container $CONTAINER_NAME is in an unknown state."
+    fi
+else
+    # Container doesn't exist, create and run
+    echo "Running new container $CONTAINER_NAME..."
+    docker run -it \
+      --name "$CONTAINER_NAME" \
+      -v "$(pwd):/workspace" \
+      -v "~/.local/share/my-debian-dev/usr-local:/usr/local" \
+      -v "~/.local/share/my-debian-dev/root-local:/root/.local" \
+      "$IMAGE_NAME"
+fi
