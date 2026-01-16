@@ -10,6 +10,11 @@ CONTAINER_NAME="arch-dev-container"
 DOCKERFILE="Dockerfile.arch"
 WORKSPACE_DIR="${1:-$(pwd)}"
 
+# Expand tilde in WORKSPACE_DIR
+if [[ "$WORKSPACE_DIR" == ~* ]]; then
+    WORKSPACE_DIR="${WORKSPACE_DIR/#\~/$HOME}"
+fi
+
 # Create workspace directory if it doesn't exist
 mkdir -p "$WORKSPACE_DIR"
 
