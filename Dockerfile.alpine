@@ -1,0 +1,33 @@
+FROM alpine:latest
+
+RUN apk add --no-cache \
+    bash \
+    python3 \
+    py3-pip \
+    nodejs \
+    npm \
+    neovim \
+    git \
+    curl \
+    wget \
+    vim \
+    nano \
+    ca-certificates \
+    build-base
+
+RUN curl -fsSL https://opencode.ai/install | bash \
+    && cp ~/.opencode/bin/opencode /usr/local/bin/opencode 
+
+RUN git clone https://github.com/LandMineDevelopment/omarchy_configs.git ~/.config/temp/ \
+    && mv ~/.config/temp/nvim ~/.config/nvim/ \
+    && mv ~/.config/temp/yazi ~/.config/yazi/
+
+RUN rm -r ~/.config/temp
+
+RUN rm -rf /var/cache/apk/* /tmp/* /root/.cache/pip/*
+
+WORKDIR /workspace
+
+VOLUME ["/workspace", "/usr/local", "/root/.local"]
+
+CMD ["bash"]
