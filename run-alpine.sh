@@ -31,7 +31,7 @@ else
     docker run -it \
       --name "$CONTAINER_NAME" \
       -v "$(pwd):/workspace" \
-      -v "~/.local/share/my-alpine-dev/usr-local:/usr/local" \
-      -v "~/.local/share/my-alpine-dev/root-local:/root/.local" \
+      -v "$HOME/.local/share/my-alpine-dev/usr-local:/usr/local" \
+      -v "$HOME/.local/share/my-alpine-dev/root-local:/root/.local" \
       "$IMAGE_NAME"
 fi
