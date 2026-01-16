@@ -14,7 +14,8 @@ RUN pacman -Syu --noconfirm && pacman -S --noconfirm \
     nano \
     ca-certificates \
     base-devel \
-    musl
+    musl \
+    rust
 
 RUN curl -fsSL https://opencode.ai/install | bash \
     && cp ~/.opencode/bin/opencode /usr/local/bin/opencode 
@@ -24,6 +25,10 @@ RUN git clone https://github.com/LandMineDevelopment/omarchy_configs.git ~/.conf
     && mv ~/.config/temp/yazi ~/.config/yazi/
 
 RUN rm -r ~/.config/temp
+
+RUN cargo install yazi-fm
+
+RUN echo 'export PATH="$HOME/.cargo/bin:$PATH"' >> ~/.bashrc
 
 RUN pacman -Scc --noconfirm && rm -rf /tmp/* /root/.cache/pip/*
 
