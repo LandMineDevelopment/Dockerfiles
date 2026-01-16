@@ -8,6 +8,7 @@
 IMAGE_NAME="debian-dev"
 CONTAINER_NAME="debian-dev-container"
 DOCKERFILE="Dockerfile.debian"
+echo "Argument 1: $1"
 WORKSPACE_DIR="${1:-$(pwd)}"
 
 # Expand tilde in WORKSPACE_DIR

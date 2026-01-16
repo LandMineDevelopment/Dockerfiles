@@ -8,6 +8,7 @@
 IMAGE_NAME="alpine-dev"
 CONTAINER_NAME="alpine-dev-container"
 DOCKERFILE="Dockerfile.alpine"
+echo "Argument 1: $1"
 WORKSPACE_DIR="${1:-$(pwd)}"
 
 # Expand tilde in WORKSPACE_DIR
