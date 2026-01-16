@@ -10,6 +10,9 @@ CONTAINER_NAME="alpine-dev-container"
 DOCKERFILE="Dockerfile.alpine"
 WORKSPACE_DIR="${1:-$(pwd)}"
 
+# Create workspace directory if it doesn't exist
+mkdir -p "$WORKSPACE_DIR"
+
 # Check if image exists, build if not
 if ! docker image inspect "$IMAGE_NAME" >/dev/null 2>&1; then
     echo "Building $IMAGE_NAME from $DOCKERFILE..."
