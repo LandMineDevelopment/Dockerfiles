@@ -30,6 +30,8 @@ RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/community' >> /etc/apk/repos
 
 RUN echo 'function yazi() { local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"; command yazi "$@" --cwd-file="$tmp"; if [ -f "$tmp" ]; then dir="$(cat "$tmp")"; rm -f "$tmp"; [ -d "$dir" ] && [ "$dir" != "$PWD" ] && cd "$dir"; fi }' >> ~/.bashrc
 
+RUN echo 'alias y="yazi"' >> ~/.bashrc
+
 RUN rm -rf /var/cache/apk/* /tmp/* /root/.cache/pip/*
 
 WORKDIR /workspace
