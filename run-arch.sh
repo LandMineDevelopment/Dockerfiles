@@ -17,6 +17,7 @@ fi
 
 # Create workspace directory if it doesn't exist
 mkdir -p "$WORKSPACE_DIR"
+echo "Using workspace directory: $WORKSPACE_DIR"
 
 # Check if image exists, build if not
 if ! docker image inspect "$IMAGE_NAME" >/dev/null 2>&1; then
@@ -27,6 +28,7 @@ fi
 # Check if container exists
 if docker container inspect "$CONTAINER_NAME" >/dev/null 2>&1; then
     # Container exists, check if running
+    echo "Container $CONTAINER_NAME exists with workspace: $(docker inspect "$CONTAINER_NAME" | grep -A 5 Mounts | grep workspace | head -1)"
     if [ "$(docker container inspect -f '{{.State.Status}}' "$CONTAINER_NAME")" = "exited" ]; then
         echo "Starting existing container $CONTAINER_NAME..."
         docker start -i "$CONTAINER_NAME"
