@@ -41,6 +41,8 @@ RUN echo 'function yazi() { local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"; command 
 
 RUN echo 'alias y="yazi"' >> ~/.bashrc
 
+RUN echo 'alias lg="lazygit"' >> ~/.bashrc
+
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache/pip/*
 
 WORKDIR /workspace

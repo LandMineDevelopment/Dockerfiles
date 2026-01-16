@@ -32,6 +32,8 @@ RUN echo 'function yazi() { local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"; command 
 
 RUN echo 'alias y="yazi"' >> ~/.bashrc
 
+RUN echo 'alias lg="lazygit"' >> ~/.bashrc
+
 RUN rm -rf /var/cache/apk/* /tmp/* /root/.cache/pip/*
 
 WORKDIR /workspace

@@ -36,6 +36,8 @@ RUN echo 'function yazi() { local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"; command 
 
 RUN echo 'alias y="yazi"' >> ~/.bashrc
 
+RUN echo 'alias lg="lazygit"' >> ~/.bashrc
+
 RUN pacman -Scc --noconfirm && rm -rf /tmp/* /root/.cache/pip/*
 
 WORKDIR /workspace
