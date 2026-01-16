@@ -34,6 +34,8 @@ RUN echo 'alias y="yazi"' >> ~/.bashrc
 
 RUN echo 'alias lg="lazygit"' >> ~/.bashrc
 
+RUN echo 'bind -x \'"\\C-y": yazi\'' >> ~/.bashrc
+
 RUN rm -rf /var/cache/apk/* /tmp/* /root/.cache/pip/*
 
 WORKDIR /workspace

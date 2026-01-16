@@ -38,6 +38,8 @@ RUN echo 'alias y="yazi"' >> ~/.bashrc
 
 RUN echo 'alias lg="lazygit"' >> ~/.bashrc
 
+RUN echo 'bind -x \'"\\C-y": yazi\'' >> ~/.bashrc
+
 RUN pacman -Scc --noconfirm && rm -rf /tmp/* /root/.cache/pip/*
 
 WORKDIR /workspace

@@ -43,6 +43,8 @@ RUN echo 'alias y="yazi"' >> ~/.bashrc
 
 RUN echo 'alias lg="lazygit"' >> ~/.bashrc
 
+RUN echo 'bind -x \'"\\C-y": yazi\'' >> ~/.bashrc
+
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache/pip/*
 
 WORKDIR /workspace
