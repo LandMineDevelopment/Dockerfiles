@@ -3,8 +3,8 @@
 # Run Arch Linux development container with persistent volumes
 # Builds image if not exists, runs or starts container as needed
 
-IMAGE_NAME="my-arch-dev"
-CONTAINER_NAME="my-arch-dev-container"
+IMAGE_NAME="arch-dev"
+CONTAINER_NAME="arch-dev-container"
 DOCKERFILE="Dockerfile.arch"
 
 # Check if image exists, build if not
@@ -31,7 +31,7 @@ else
     docker run -it \
       --name "$CONTAINER_NAME" \
       -v "$(pwd):/workspace" \
-      -v "$HOME/.local/share/my-arch-dev/usr-local:/usr/local" \
-      -v "$HOME/.local/share/my-arch-dev/root-local:/root/.local" \
+      -v "$HOME/.local/share/arch-dev/usr-local:/usr/local" \
+      -v "$HOME/.local/share/arch-dev/root-local:/root/.local" \
       "$IMAGE_NAME"
 fi

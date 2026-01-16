@@ -3,8 +3,8 @@
 # Run Alpine development container with persistent volumes
 # Builds image if not exists, runs or starts container as needed
 
-IMAGE_NAME="my-alpine-dev"
-CONTAINER_NAME="my-alpine-dev-container"
+IMAGE_NAME="alpine-dev"
+CONTAINER_NAME="alpine-dev-container"
 DOCKERFILE="Dockerfile.alpine"
 
 # Check if image exists, build if not
@@ -31,7 +31,7 @@ else
     docker run -it \
       --name "$CONTAINER_NAME" \
       -v "$(pwd):/workspace" \
-      -v "$HOME/.local/share/my-alpine-dev/usr-local:/usr/local" \
-      -v "$HOME/.local/share/my-alpine-dev/root-local:/root/.local" \
+      -v "$HOME/.local/share/alpine-dev/usr-local:/usr/local" \
+      -v "$HOME/.local/share/alpine-dev/root-local:/root/.local" \
       "$IMAGE_NAME"
 fi

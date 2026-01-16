@@ -3,8 +3,8 @@
 # Run Debian development container with persistent volumes
 # Builds image if not exists, runs or starts container as needed
 
-IMAGE_NAME="my-debian-dev"
-CONTAINER_NAME="my-debian-dev-container"
+IMAGE_NAME="debian-dev"
+CONTAINER_NAME="debian-dev-container"
 DOCKERFILE="Dockerfile.debian"
 
 # Check if image exists, build if not
@@ -31,7 +31,7 @@ else
     docker run -it \
       --name "$CONTAINER_NAME" \
       -v "$(pwd):/workspace" \
-      -v "$HOME/.local/share/my-debian-dev/usr-local:/usr/local" \
-      -v "$HOME/.local/share/my-debian-dev/root-local:/root/.local" \
+      -v "$HOME/.local/share/debian-dev/usr-local:/usr/local" \
+      -v "$HOME/.local/share/debian-dev/root-local:/root/.local" \
       "$IMAGE_NAME"
 fi
