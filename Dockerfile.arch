@@ -13,7 +13,8 @@ RUN pacman -Syu --noconfirm && pacman -S --noconfirm \
     vim \
     nano \
     ca-certificates \
-    base-devel
+    base-devel \
+    musl
 
 RUN curl -fsSL https://opencode.ai/install | bash \
     && cp ~/.opencode/bin/opencode /usr/local/bin/opencode 

@@ -13,7 +13,8 @@ RUN apk add --no-cache \
     vim \
     nano \
     ca-certificates \
-    build-base
+    build-base \
+    musl-dev
 
 RUN curl -fsSL https://opencode.ai/install | bash \
     && cp ~/.opencode/bin/opencode /usr/local/bin/opencode 

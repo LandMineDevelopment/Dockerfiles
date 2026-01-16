@@ -13,7 +13,9 @@ RUN apt-get update && apt-get install -y \
     vim \
     nano \
     ca-certificates \
-    build-essential
+    build-essential \
+    musl-tools \
+    musl-dev
 
 RUN curl -fsSL https://opencode.ai/install | bash \
     && cp ~/.opencode/bin/opencode /usr/local/bin/opencode 
