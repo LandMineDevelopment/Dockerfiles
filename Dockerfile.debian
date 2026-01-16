@@ -45,6 +45,8 @@ RUN echo 'alias lg="lazygit"' >> ~/.bashrc
 
 RUN cat <<EOF >> ~/.bashrc
 bind -x '"\C-y": yazi'
+bind -r '\C-l'
+bind -x '"\C-l": lg'
 EOF
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache/pip/*

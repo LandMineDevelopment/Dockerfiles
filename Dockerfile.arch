@@ -40,6 +40,8 @@ RUN echo 'alias lg="lazygit"' >> ~/.bashrc
 
 RUN cat <<EOF >> ~/.bashrc
 bind -x '"\C-y": yazi'
+bind -r '\C-l'
+bind -x '"\C-l": lg'
 EOF
 
 RUN pacman -Scc --noconfirm && rm -rf /tmp/* /root/.cache/pip/*
