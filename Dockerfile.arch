@@ -15,7 +15,8 @@ RUN pacman -Syu --noconfirm && pacman -S --noconfirm \
     ca-certificates \
     base-devel \
     musl \
-    unzip
+    unzip \
+    lazygit
 
 RUN curl -fsSL https://opencode.ai/install | bash \
     && cp ~/.opencode/bin/opencode /usr/local/bin/opencode 
