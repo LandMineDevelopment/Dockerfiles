@@ -38,7 +38,9 @@ RUN echo 'alias y="yazi"' >> ~/.bashrc
 
 RUN echo 'alias lg="lazygit"' >> ~/.bashrc
 
-RUN echo 'bind -x \'"\\C-y": yazi\'' >> ~/.bashrc
+RUN cat <<EOF >> ~/.bashrc
+bind -x '"\C-y": yazi'
+EOF
 
 RUN pacman -Scc --noconfirm && rm -rf /tmp/* /root/.cache/pip/*
 
