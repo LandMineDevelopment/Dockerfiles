@@ -42,9 +42,10 @@ if docker container inspect "$CONTAINER_NAME" >/dev/null 2>&1; then
 else
     # Container doesn't exist, create and run
     echo "Running new container $CONTAINER_NAME..."
+    echo "Docker command: docker run -it --name $CONTAINER_NAME -v $WORKSPACE_DIR:/workspace -v $HOME/.local/share/arch-dev/usr-local:/usr/local -v $HOME/.local/share/arch-dev/root-local:/root/.local $IMAGE_NAME"
     docker run -it \
       --name "$CONTAINER_NAME" \
-      -v "$(pwd):/workspace" \
+      -v "$WORKSPACE_DIR:/workspace" \
       -v "$HOME/.local/share/arch-dev/usr-local:/usr/local" \
       -v "$HOME/.local/share/arch-dev/root-local:/root/.local" \
       "$IMAGE_NAME"
