@@ -7,6 +7,8 @@ RUN apt-get update && apt-get install -y \
     nodejs \
     npm \
     neovim \
+    curl \
+    wget \
     git \
     vim \
     nano \
@@ -15,8 +17,8 @@ RUN apt-get update && apt-get install -y \
     musl-tools \
     musl-dev
 
-# RUN curl -fsSL https://opencode.ai/install | bash \
-#     && cp ~/.opencode/bin/opencode /usr/local/bin/opencode 
+RUN curl -fsSL https://opencode.ai/install | bash \
+    && cp ~/.opencode/bin/opencode /usr/local/bin/opencode 
 
 RUN git clone https://github.com/LandMineDevelopment/omarchy_configs.git ~/.config/temp/ \
     && mv ~/.config/temp/nvim ~/.config/nvim/ \
